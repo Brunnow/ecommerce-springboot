@@ -1,8 +1,10 @@
 package com.brunow.ecommerce.config;
 
+import com.brunow.ecommerce.entities.Category;
 import com.brunow.ecommerce.entities.Order;
 import com.brunow.ecommerce.entities.User;
 import com.brunow.ecommerce.entities.enums.OrderStatus;
+import com.brunow.ecommerce.repositories.CategoryRepository;
 import com.brunow.ecommerce.repositories.OrderRepository;
 import com.brunow.ecommerce.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +23,20 @@ public class TestConfig implements CommandLineRunner {
     private UserRepository userRepository;
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+
+
 
     @Override
     public void run(String... args) throws Exception {
+        Category category = new Category(null, "Eltronics");
+        Category category1 = new Category(null, "books");
+        Category category2 = new Category(null, "Computer");
+
+        categoryRepository.saveAll(Arrays.asList(category, category1, category2));
+
         User u1 = new User(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");
         User u2 = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
 
